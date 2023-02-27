@@ -18,7 +18,7 @@ export class ChatController{
     getMessages=async(req:Request, res:Response, next:NextFunction)=>{
         const chatId: number=Number(req.params.chatId);
         const messages=await this.chatService.getChats(chatId,'v_view_chat');
-        res.json({messages: messages});
+        res.json(messages);
     };
 
     redirectToUsers=(req:Request, res:Response, next:NextFunction)=>{

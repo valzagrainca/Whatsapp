@@ -56,5 +56,18 @@ describe('ChatController',()=>{
             expect(next).not.toHaveBeenCalled();      
         });
     });
+    describe('getMessagges',()=>{
+        it('should render chats/userchats page with array of users and array of chats', async()=>{
+            req = {params: {chatId: '1'}};
+            const mockData = [{chat_id:1, text:'test', image_url:'test',video_url:'test', document_url:'test', user_id:1, name:'test'}];
 
+            mockChatService.getMessages.mockResolvedValue(mockData);
+            
+            await chatController.getMessages(req as Request, res as Response, next);
+            expect(mockChatService.getChats).toHaveBeenCalledTimes(1);
+            expect(mockChatService.getChats).toHaveBeenCalledWith(1,'v_view_chat');
+            expect(res.json).toHaveBeenCalledTimes(1);
+            expect(next).not.toHaveBeenCalled();      
+        });
+    });
 });

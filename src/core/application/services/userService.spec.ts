@@ -7,7 +7,6 @@ describe('UserService', () => {
   let service: UserService;
 
   beforeEach(() => {
-    // Create a mocked repository
     mockRepository = {
       fetchAll: jest.fn(),
       findById: jest.fn(),
@@ -16,7 +15,6 @@ describe('UserService', () => {
       callFunction: jest.fn(),
     } as jest.Mocked<IBaseRepository<User>>;
 
-    // Create an instance of UserService with the mocked repository
     service = new UserService(mockRepository);
   });
 
@@ -38,7 +36,6 @@ describe('UserService', () => {
   });
   describe('getUserById', () => {
     it('should return an user', async () => {
-      // Set up the mock repository to return some test data
       const mockData = { id: 1, first_name: 'User1', last_name:'Test', number:'+38348525254', status:'HI',
       profile_picture:'https://cdn2.vectorstock.com/i/1000x1000/41/11/flat-business-woman-user-profile-avatar-icon-vector-4334111.jpg' };
 
