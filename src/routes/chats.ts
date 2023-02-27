@@ -18,6 +18,6 @@ router.get('/',chatController.redirectToUsers);
 
 router.get('/userchats/:userId',chatController.getUserChats);
 
-router.get('/messages',chatController.getMessages);
+router.get('/messages/:chatId',chatController.getMessages);
 
 export default router;
