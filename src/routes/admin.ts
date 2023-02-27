@@ -1,13 +1,14 @@
 import express from 'express';
 import { UserController } from '../UI/controllers/UserController';
 import { UserService } from '../core/application/services/UserService';
-import { BaseRespository } from '../infrastructure/repositories/BaseRespository';
+import { BaseRepository } from '../infrastructure/repositories/BaseRepository';
 import User from '../core/domain/entities/users';
 import { IBaseRepository } from '../infrastructure/repositoryInterfaces/IBaseRepository';
 import { IUserService } from '../core/application/serviceInterfaces/IUserService';
+import db from '../infrastructure/dbConnection/database';
 
 const router = express.Router();
-const userRepository: IBaseRepository<User>=new BaseRespository<User>;
+const userRepository: IBaseRepository<User>=new BaseRepository<User>(db);
 const userService:IUserService = new UserService(userRepository);
 const userController=new UserController(userService);
 

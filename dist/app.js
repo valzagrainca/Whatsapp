@@ -8,13 +8,15 @@ const express_1 = __importDefault(require("express"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const admin_1 = __importDefault(require("./routes/admin"));
 const chats_1 = __importDefault(require("./routes/chats"));
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.set('view engine', 'ejs');
-app.set('views', path_1.default.join(__dirname, 'views'));
+app.set('views', path_1.default.join(__dirname, 'UI/views'));
 app.use(body_parser_1.default.urlencoded({ extended: false }));
-app.use(express_1.default.static(path_1.default.join(__dirname, 'public')));
+app.use(express_1.default.static(path_1.default.join(__dirname, 'UI/public')));
 app.use('/admin', admin_1.default);
 app.use(chats_1.default);
-app.listen('3001', () => {
+app.listen(process.env.PORT, () => {
     console.log("Server Running");
 });

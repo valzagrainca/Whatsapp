@@ -7,7 +7,7 @@ export class UserController{
     ){}
 
     getUsers = async (req: Request, res: Response, next: NextFunction)=>{
-        const users = await this.userService.getUsers(); 
+        const users = await this.userService.getUsers('Users'); 
         res.render('admin/users', {
                 users: users,
                 pageTitle: 'Users',
@@ -17,7 +17,7 @@ export class UserController{
     getUserDetail = async (req: Request, res:Response, next: NextFunction)=>{
         const userId:number =Number(req.params.userId);
 
-        const user=await this.userService.getUserById(userId);
+        const user=await this.userService.getUserById(userId,'Users');
         res.render('admin/edit-user',{
             pageTitle: 'Edit User',
             user:user
@@ -26,7 +26,7 @@ export class UserController{
 
     deleteUser= async (req: Request, res:Response, next: NextFunction)=>{
         const userId:number=req.body.userId;
-        this.userService.deleteUserById(userId);
+        this.userService.deleteUserById(userId,'Users');
         res.redirect('/admin/users');
     };
 
@@ -37,7 +37,7 @@ export class UserController{
             const number:string=req.body.number;
             const status:string=req.body.status;
             const profile_picture:string=req.body.profile_picture;
-            this.userService.updateUser(id,first_name,last_name,number,status,profile_picture);
+            this.userService.updateUser(id,first_name,last_name,number,status,profile_picture,'Users');
             res.redirect('/admin/users')
     };
 }
