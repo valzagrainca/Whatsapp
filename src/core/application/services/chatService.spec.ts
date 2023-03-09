@@ -11,13 +11,14 @@ describe('ChatService', () => {
   let chatService: ChatService;
 
   beforeEach(() => {
-    // Create a mocked repository
     mockRepositoryforUser = {
       fetchAll: jest.fn(),
       findById: jest.fn(),
       updateById: jest.fn(),
       deleteById: jest.fn(),
       callFunction: jest.fn(),
+      findByPhoneNumber:jest.fn(),
+      callProcedure:jest.fn()
     } as jest.Mocked<IBaseRepository<User>>;
 
     mockRepositoryforChat = {
@@ -26,6 +27,8 @@ describe('ChatService', () => {
         updateById: jest.fn(),
         deleteById: jest.fn(),
         callFunction: jest.fn(),
+        findByPhoneNumber:jest.fn(),
+        callProcedure:jest.fn()
       } as jest.Mocked<IBaseRepository<Chat>>;
 
     chatService= new ChatService(mockRepositoryforUser,mockRepositoryforChat);
@@ -33,8 +36,7 @@ describe('ChatService', () => {
 
   describe('getChats', () => {
     it('should return an array of users and array of chats', async () => {
-      // Set up the mock repository to return some test data
-      const mockUserData = { id: 1, first_name: 'User1', last_name:'Test', number:'+38348525254', status:'HI',
+      const mockUserData = { id: 1, first_name: 'User1', last_name:'Test', number:'+38348525254', code:'123456',status:'HI',
       profile_picture:'https://cdn2.vectorstock.com/i/1000x1000/41/11/flat-business-woman-user-profile-avatar-icon-vector-4334111.jpg' };
       
       const mockChatData = [{chat_id: 2, chat_name: 'group 2', group_picture: 'https://cdn2.vectorstock.com/i/1000x1000/26/66/profile-icon-member-society-group-avatar-vector-18572666.jpg',

@@ -20,8 +20,4 @@ export class ChatController{
         const messages=await this.chatService.getChats(chatId,'v_view_chat');
         res.json(messages);
     };
-
-    redirectToUsers=(req:Request, res:Response, next:NextFunction)=>{
-        res.redirect('/admin/users');
-    }
 }

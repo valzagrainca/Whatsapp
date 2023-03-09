@@ -4,6 +4,7 @@ export default class User {
     public first_name: string,
     public last_name: string,
     public number: string,
+    public code: string,
     public status: string,
     public profile_picture: string
   ) {

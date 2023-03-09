@@ -7,4 +7,6 @@ export interface IBaseRepository<T> {
     findById(id: number, tableName: string): Promise<T>;
     updateById(tableName: string, values: Record<string, any>, where: Record<string, any>): Promise<Boolean> ;
     callFunction(funcName: string, ...params: any[]): Promise<any[]>;
+    findByPhoneNumber(phone: string, tableName: string): Promise<T>;
+    callProcedure(procedureName: string, ...params: any[]): Promise<boolean>;
 }

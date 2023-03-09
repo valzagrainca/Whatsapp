@@ -26,7 +26,7 @@ describe('ChatController',()=>{
     describe('getChats',()=>{
         it('should render chats/userchats page with array of users and array of chats', async()=>{
             req = {params: {userId: '1'}};
-            const mockUserData:User = { id: 1, first_name: 'User1', last_name:'Test', number:'+38348525254', status:'HI',
+            const mockUserData:User = { id: 1, first_name: 'User1', last_name:'Test', number:'+38348525254',code:'123456', status:'HI',
             profile_picture:'https://cdn2.vectorstock.com/i/1000x1000/41/11/flat-business-woman-user-profile-avatar-icon-vector-4334111.jpg' };
             
             const mockChatData:Chat[] = [{chat_id: 2, chat_name: 'group 2', group_picture: 'https://cdn2.vectorstock.com/i/1000x1000/26/66/profile-icon-member-society-group-avatar-vector-18572666.jpg',
@@ -45,14 +45,6 @@ describe('ChatController',()=>{
                 user:mockData.user,
                 chats:mockData.chats
               });
-            expect(next).not.toHaveBeenCalled();      
-        });
-    });
-    describe('redirectToUsers',()=>{
-        it('should render chats/userchats page with array of users and array of chats', async()=>{
-            await chatController.redirectToUsers(req as Request, res as Response, next);
-            expect(res.redirect).toHaveBeenCalledTimes(1);
-            expect(res.redirect).toHaveBeenCalledWith('/admin/users');
             expect(next).not.toHaveBeenCalled();      
         });
     });

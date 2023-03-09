@@ -19,7 +19,13 @@ export class BaseRepository<T>  implements IBaseRepository<T> {
         const queryResult=await this.db.query(`SELECT * FROM ${tableName} WHERE id = $1`, [id]);
         const filteredById=queryResult.rows[0];
         return filteredById;
-    }; 
+    };
+    
+    async findByPhoneNumber(phone: string, tableName: string): Promise<T>{
+      const queryResult=await this.db.query(`SELECT * FROM ${tableName} WHERE number = $1`, [phone]);
+      const filteredById=queryResult.rows[0];
+      return filteredById;
+  };
 
     async deleteById(id: number, tableName: string): Promise<Boolean> {
       const res = await this.db.query(`DELETE FROM ${tableName} WHERE id = $1`, [id]);
@@ -45,8 +51,14 @@ export class BaseRepository<T>  implements IBaseRepository<T> {
       const placeholders = params.map((_, i) => `$${i+1}`).join(',');
       const query = `SELECT * FROM ${funcName}(${placeholders});`;
       const result = await this.db.query(query, params);
-      console.log(result);
       return result.rows;
+    }
+
+    async  callProcedure(procedureName: string, ...params: any[]): Promise<boolean>{
+      const placeholders = params.map((_, i) => `$${i+1}`).join(',');
+      const query = `CALL ${procedureName}(${placeholders});`;
+      const result = await this.db.query(query, params);
+      return result.rowCount===1;
     }
 
 }

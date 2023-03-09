@@ -35,9 +35,10 @@ export class UserController{
             const first_name:string=req.body.first_name;
             const last_name:string=req.body.last_name;
             const number:string=req.body.number;
+            const code:string=req.body.code;
             const status:string=req.body.status;
             const profile_picture:string=req.body.profile_picture;
-            this.userService.updateUser(id,first_name,last_name,number,status,profile_picture,'Users');
+            this.userService.updateUser(id,first_name,last_name,number,code,status,profile_picture,'Users');
             res.redirect('/admin/users')
     };
 }

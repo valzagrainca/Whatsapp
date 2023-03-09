@@ -25,9 +25,9 @@ describe('UserController',()=>{
     });
     describe('getUsers', ()=>{
         it('should render admin/users page with users data', async () =>{
-            const mockUsers= [{ id: 1, first_name: 'User1', last_name:'Test', number:'+38348525254', status:'HI',
+            const mockUsers= [{ id: 1, first_name: 'User1', last_name:'Test', number:'+38348525254',code:'123456', status:'HI',
             profile_picture:'https://cdn2.vectorstock.com/i/1000x1000/41/11/flat-business-woman-user-profile-avatar-icon-vector-4334111.jpg' },
-            { id: 2, first_name: 'User2', last_name:'Test', number:'+3835556954',  status:'HI',
+            { id: 2, first_name: 'User2', last_name:'Test', number:'+3835556954',code:'123456',  status:'HI',
             profile_picture:'https://cdn2.vectorstock.com/i/1000x1000/41/11/flat-business-woman-user-profile-avatar-icon-vector-4334111.jpg' }];
             
             mockUserService.getUsers.mockResolvedValue(mockUsers);
@@ -46,7 +46,7 @@ describe('UserController',()=>{
     describe('getUserById', ()=>{
         it('should render admin/edit-user page with user data', async () =>{
             req = {params: {userId: '1'}};
-            const mockUser= { id: 1, first_name: 'User1', last_name:'Test', number:'+38348525254', status:'HI',
+            const mockUser= { id: 1, first_name: 'User1', last_name:'Test', number:'+38348525254',code:'123456', status:'HI',
             profile_picture:'https://cdn2.vectorstock.com/i/1000x1000/41/11/flat-business-woman-user-profile-avatar-icon-vector-4334111.jpg' };
             
             mockUserService.getUserById.mockResolvedValue(mockUser);

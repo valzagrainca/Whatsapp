@@ -77,7 +77,6 @@ describe("BaseRepository",()=>{
         const params={id:1};
         const funcName='get_user_chats';
         const expectedQuery = `SELECT * FROM ${funcName}($1);`;
-      
 
         const mockData= {
             chat_id: 2,

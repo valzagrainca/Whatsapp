@@ -13,6 +13,8 @@ describe('UserService', () => {
       updateById: jest.fn(),
       deleteById: jest.fn(),
       callFunction: jest.fn(),
+      findByPhoneNumber:jest.fn(),
+      callProcedure:jest.fn()
     } as jest.Mocked<IBaseRepository<User>>;
 
     service = new UserService(mockRepository);
@@ -20,10 +22,9 @@ describe('UserService', () => {
 
   describe('getUsers', () => {
     it('should return an array of users', async () => {
-      // Set up the mock repository to return some test data
-      const mockData = [{ id: 1, first_name: 'User1', last_name:'Test', number:'+38348525254', status:'HI',
+      const mockData = [{ id: 1, first_name: 'User1', last_name:'Test', number:'+38348525254',code:'123456', status:'HI',
       profile_picture:'https://cdn2.vectorstock.com/i/1000x1000/41/11/flat-business-woman-user-profile-avatar-icon-vector-4334111.jpg' },
-      { id: 2, first_name: 'User2', last_name:'Test', number:'+3835556954',  status:'HI',
+      { id: 2, first_name: 'User2', last_name:'Test', number:'+3835556954',code:'123456',  status:'HI',
       profile_picture:'https://cdn2.vectorstock.com/i/1000x1000/41/11/flat-business-woman-user-profile-avatar-icon-vector-4334111.jpg' }];
 
       mockRepository.fetchAll.mockResolvedValue(mockData);
@@ -36,7 +37,7 @@ describe('UserService', () => {
   });
   describe('getUserById', () => {
     it('should return an user', async () => {
-      const mockData = { id: 1, first_name: 'User1', last_name:'Test', number:'+38348525254', status:'HI',
+      const mockData = { id: 1, first_name: 'User1', last_name:'Test', number:'+38348525254',code:'123456', status:'HI',
       profile_picture:'https://cdn2.vectorstock.com/i/1000x1000/41/11/flat-business-woman-user-profile-avatar-icon-vector-4334111.jpg' };
 
       mockRepository.findById.mockResolvedValue(mockData);
@@ -61,7 +62,7 @@ describe('UserService', () => {
     it('should return boolean value', async () => {
       mockRepository.updateById.mockResolvedValue(true);
 
-      const result = await service.updateUser(1,'Test','Test','+345625262','Hi','Some url','users');
+      const result = await service.updateUser(1,'Test','Test','+345625262','123456','Hi','Some url','users');
       expect(result).toEqual(true);
       expect(mockRepository.updateById).toHaveBeenCalledTimes(1);
       expect(mockRepository.updateById).toHaveBeenCalledWith('users',{"first_name": "Test", "id": 1, "last_name": "Test", "number": "+345625262", "profile_picture": "Some url", "status": "Hi"},{"id":1});
